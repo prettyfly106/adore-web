@@ -1,0 +1,114 @@
+.pointer {
+    cursor: pointer;
+}
+
+.green {
+    background-color: #a5d6a7;
+}
+.text-bold {
+    font-weight: bold;
+}
+
+.shadow{
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+tr.tableHeader th{
+	text-align: center;
+	vertical-align: middle !important;
+	font-weight: bold;
+	background-color: #5FA16C;
+}
+
+tr.tableRow th{
+	text-align: right;	
+}
+
+tr.tableRow td{
+		white-space: nowrap;			
+}
+
+tr.tableRow td.center{
+		text-align: center;			
+}
+#leftMenu .accordion-group {
+    margin-bottom: 0px;
+    border:0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+#leftMenu .accordion-heading {
+    border-top: 1px solid #717171; /* inner stroke */
+    border-bottom: 1px solid #5A5A5A; /* inner stroke */
+    background-color: #353535; /* layer fill content */
+    background-image: -moz-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    background-image: linear-gradient(90deg, #595b59 0%, #616161 100%); /* gradient overlay */
+    list-style-type:none;
+    padding: 10px 15px;
+}
+
+#leftMenu .accordion-heading  a{
+    color: #cbcbcb; /* text color */
+    text-shadow: 0 1px 0 #3b3b3b; /* drop shadow */
+    text-decoration:none;
+    font-weight:bold;
+}
+
+#leftMenu .accordion-heading  a:hover{
+    color:#ccc
+}
+
+#leftMenu .accordion-heading .active {
+    border: 1px solid #5b5b5b; /* inner stroke */
+    background-color: #353535; /* layer fill content */
+    background-image: -moz-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+}
+.list-group-item {
+    border-radius: 0px !important;
+}
+
+.list-group {
+    margin-bottom: 0px !important;
+}
+.top-banner {
+	background-image: url('../img/network-monitoring.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.well.danger {
+	background-color: #f2dede !important;
+}
+
+.well.success {
+	background-color: #d9edf7 !important;
+}
+
+a.btn-close {
+    background: url("../img/icon-close.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+    color: #ddd;
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    text-indent: -999px;
+    top: 10px;
+    width: 20px;
+}
+
+.modal-dialog {
+    margin: 20% auto !important;
+}
+
+.input-group-addon {
+	min-width: 140px !important;
+	text-align: left !important;
+	font-weight: bold;
+}
