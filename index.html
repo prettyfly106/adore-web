@@ -52,7 +52,6 @@
   $elm = $(elm);
   var pageId = $elm.attr('id');
   var token = $elm.attr('token');
-  console.log(pageId,token);
    FB.api(pageId + '/conversations',
    {
      access_token : token
@@ -118,7 +117,16 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
+    if (response.status === 'connected') {
+      statusChangeCallback(response);
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+    } else if (response.status === 'not_authorized') {
+      FB.login(function(response) {
+      }, {scope:'email,public_profile,manage_pages,read_page_mailboxes'})
+    } else {
+    }
+
   });
 
   };

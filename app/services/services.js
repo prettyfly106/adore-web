@@ -8,6 +8,7 @@
  * Factory in the myAppApp.
  */
 var apiPath = 'http://localhost:8000/api/v1';
+var fbAPIPath = 'https://graph.facebook.com/v2.10/';
 
 angular.module('services', [])
     .factory('BaseBean', function ($http) {
@@ -76,6 +77,42 @@ angular.module('services', [])
             }
         }
     })
+    .factory('FBBean', ['BaseBean', function (BaseBean) {
+        var baseUrl = fbAPIPath;
+        return {
+             get:function(key, param, callback) {
+               if (!param.access_token) {
+                 if (sessionStorage.fb_token) {
+                   param.access_token = sessionStorage.fb_token;
+                 }
+               }
+               var url = [baseUrl,key].join('/') + '?' + $.param(param);
+               return BaseBean.httpGet(url,callback);
+             },
+             post:function(key, param, data, callback) {
+               if (!param.access_token) {
+                 if (sessionStorage.fb_token) {
+                   param.access_token = sessionStorage.fb_token;
+                 }
+               }
+               var url = [baseUrl,key].join('/') + '?' + $.param(param);
+               return BaseBean.httpPost(,data,callback);
+             },
+             login: function(scopes, callback) {
+               FB.getLoginStatus(function(response) {
+                 if (response.status === 'connected') {
+                   callback(response);
+                 } else if (response.status === 'not_authorized') {
+                   if (!scopes) scopes = 'email,public_profile,manage_pages,read_page_mailboxes';
+                   FB.login(function(response) {
+                     callback(response);
+                   }, {scope:scopes})
+                 } else {
+                 }
+               });
+             }
+        }
+    }])
     .factory('PageBean', ['BaseBean', function (BaseBean) {
         var baseUrl = apiPath + '/page';
         return {
