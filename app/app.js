@@ -18,8 +18,9 @@
         'filters', 'services', 'controllers'
     ]);
     app.config(['$httpProvider', function ($httpProvider) {
-        var csrf_token = $('meta[name=csrf-token]').attr('content');
-        $httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token;
+        //var csrf_token = $('meta[name=csrf-token]').attr('content');
+        //$httpProvider.defaults.headers.common['Authorization']='Bearer ' + sessionStorage.token;
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     }]);
     app.config(function ($routeProvider) {
         $routeProvider
@@ -27,13 +28,19 @@
 				templateUrl : tplurl('dashboard'),
 				controller : 'DashBoardCtl'
             })
+            .when('/login', {
+        templateUrl : tplurl('login'),
+        controller : 'LoginCtl'
+            })
             .otherwise({
                 redirectTo: '/dashboard'
             });
     });
 
     app.run(function ($rootScope, $location, $cookieStore, $interval, $http, $modal, toaster) {
-
+        if (sessionStorage.token) {
+            $http.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.token;//--disable-web-security --user-data-dir
+        }
 
         $rootScope.changeLocation = function(href) {
         	window.location.href=href;

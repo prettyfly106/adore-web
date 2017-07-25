@@ -3,7 +3,7 @@
  */
 angular.module('controllers')
     .controller('DashBoardCtl', ['toaster', '$scope','$modal','$rootScope', '$routeParams', '$interval','PageBean',
-        function (toaster, $scope,$modal,$rootScope, $routeParams, $interval,UpsBean,CompanyBean,ReportBean) {
+        function (toaster, $scope,$modal,$rootScope, $routeParams, $interval,PageBean) {
 
     		var interval;
             $scope.basePath = basePath;
