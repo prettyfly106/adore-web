@@ -15,6 +15,7 @@
         'ngTouch',
         'toaster',
         'ui.bootstrap',
+        'facebook',
         'filters', 'services', 'controllers'
     ]);
     app.config(['$httpProvider', function ($httpProvider) {
@@ -32,15 +33,48 @@
         templateUrl : tplurl('login'),
         controller : 'LoginCtl'
             })
+            .when('/page', {
+        templateUrl : tplurl('page_manager'),
+        controller : 'PageManagerCtl'
+            })
             .otherwise({
                 redirectTo: '/dashboard'
             });
-    });
+    }).config(function(FacebookProvider) {
+     FacebookProvider.init('151385562092902');
+  });
 
-    app.run(function ($rootScope, $location, $cookieStore, $interval, $http, $modal, toaster) {
+    app.run(function ($rootScope,$window, $location, $cookieStore, $interval, $http, $modal, toaster,Facebook,UserBean) {
         if (sessionStorage.token) {
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.token;//--disable-web-security --user-data-dir
         }
+
+        $rootScope.fbLogin = function() {
+          var callback=arguments[arguments.length-1];
+          Facebook.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+              if (callback && typeof callback == 'function')
+                callback(true,response.authResponse);
+            } else {
+              scopes = 'email,public_profile,manage_pages,read_page_mailboxes';
+              Facebook.login(function(response) {
+                if (callback && typeof callback == 'function')
+                  callback(response.status === 'connected',response.authResponse);
+              }, {scope:scopes})
+            }
+          });
+        };
+
+        $rootScope.fbSignIn = function(cb) {
+          $rootScope.fbLogin(function(success, data) {
+            if (success && data) {
+              sessionStorage.fb_token = data.accessToken;
+              UserBean.fbLogin({access_token: data.accessToken}, function(success, data) {
+                cb(data);
+              });
+            }
+          });
+        };
 
         $rootScope.changeLocation = function(href) {
         	window.location.href=href;
@@ -57,6 +91,9 @@
         	}
         };
         $rootScope.logout = function() {
+          sessionStorage.token = null;
+          sessionStorage.fb_token = null;
+          $rootScope.changeLocation('#/login');
         };
 
         $rootScope.toDate = function(input, from, to) {
@@ -93,6 +130,11 @@
         });
 
 
+        $rootScope.$on('$routeChangeSuccess', function() {
+          $rootScope.showMenu = $location.path() !== "/login";
+      });
+
+
         $rootScope.user = window.userInfo;
         $rootScope.logInTime = window.logInTime;
         $rootScope.userRole = window.userRole;
@@ -127,6 +169,7 @@
 
     });
 
-    app.controller('IndexController',['$scope','$rootScope', function ($scope,$rootScope) {
+    app.controller('IndexController',['$scope','$rootScope','$location','Facebook', function ($scope,$rootScope,$location,FB) {
+
     }]);
 })();

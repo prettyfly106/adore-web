@@ -20,15 +20,15 @@ tr.tableHeader th{
 }
 
 tr.tableRow th{
-	text-align: right;	
+	text-align: right;
 }
 
 tr.tableRow td{
-		white-space: nowrap;			
+		white-space: nowrap;
 }
 
 tr.tableRow td.center{
-		text-align: center;			
+		text-align: center;
 }
 #leftMenu .accordion-group {
     margin-bottom: 0px;
@@ -108,7 +108,6 @@ a.btn-close {
 }
 
 .input-group-addon {
-	min-width: 140px !important;
 	text-align: left !important;
 	font-weight: bold;
 }

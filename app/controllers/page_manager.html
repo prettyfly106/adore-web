@@ -1,0 +1,43 @@
+<div class="row">
+  <h3 class="page-header ng-binding">Quản lý các trang</h3>
+	<div class="scroll-panel">
+		<div class="scroll-list">
+			<div class="fb-pages">
+				<div class="row">
+					<div class="col-xs-4 col-xs-offset-4">
+						<button class="btn btn-primary" style='width:400px;' ng-click="fbSignIn()"><i class="fa fa-facebook"></i>  Cấp phép truy cập</button>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="row">
+					<div class="col-xs-6">
+						<h4 class="text-center ng-binding">Trang bạn là admin</h4>
+            <div ng-repeat="p in pageList" class="well">
+              <div class="row">
+                <div class="col-md-8 text-left">
+                  <h3 class="ng-binding">{{$index + 1}}. {{p.name}}</h3>
+                  <p class="ng-binding">category: {{p.category}}</p>
+                  <p>
+                    id: <a ng-href="https://facebook.com/{{p.id}}"  target="_blank" rel="noopener" class="ng-binding">{{p.id}}</a>
+                  </p>
+                </div>
+                <div class="col-md-4 text-right">
+                  <p>
+                    <button class="btn btn-primary">Theo dõi</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+					</div>
+					<div class="col-xs-6 text-center">
+						<h4 class="text-center ng-binding">Trang đang theo dõi</h4>
+            <div>
+							<h4>\ (o_o) /</h4>
+              Chưa theo dõi trang nào
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

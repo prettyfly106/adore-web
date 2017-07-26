@@ -1,3 +1,53 @@
-<div class="row">
+<div id="auth">
+    <div class="container text-center" style="padding-top:20vh;">
+          <div class="panel panel-default" style="width:450px;margin:0 auto">
+            <div class="panel-heading">
+              <h3 class="panel-title">Đăng nhập</h3>
+            </div>
+            <div class="panel-body">
+              <form name="loginForm" novalidate="" style="">
+                <div class="alert alert-danger" role="alert" ng-show="invalid">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Lỗi:</span>
+                Tên truy cập/email hoặc mật khẩu không chính xác!
+              </div>
+            	<div class="form-group facebook-login text-center">
+            		<button class="btn btn-primary form-control" ng-click="fbSignIn()">Đăng nhập bằng Facebook</button>
+            	</div>
+            	<div class="form-group">
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                <input class="form-control"  type="text" name="username" placeholder="Tên đăng nhập hoặc email" ng-model="username" required="" style="">
+              </div>
+            	</div>
+            	<div class="form-group">
+            		<div class="input-group">
+            			<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  <input type="password" name="password" placeholder="Mật khẩu"	class="form-control" ng-model="password" required="" style="">
+            		</div>
+            	</div>
+              <div class="row" style="margin-top:5px;">
+                <div class="col-xs-6 checkbox text-left">
+                  <label class="k-checkbox ng-binding"
+                    ng-click="LoginCtl.rememberLogin()"><input type="checkbox"
+                    name="checkbox" ng-model="LoginCtl.isRememberLogin"
+                    class="ng-pristine ng-untouched ng-valid ng-empty"><i></i>&nbsp;Nhớ
+                    đăng nhập </label>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <button class="btn btn-primary"	ng-click="login()">Đăng nhập</button>
+                </div>
+              </div>
+              <hr>
+              <p>
+                <a class="color-blue ng-binding" href="/register">Đăng ký tài khoản</a>
+              </p>
+              <p>
+                <a class="color-blue ng-binding" href="/reset-password">Quên mật khẩu</a>
+              </p>
+            </form>
+            </div>
+          </div>
 
-</div>
+    </div>
+  </div>
